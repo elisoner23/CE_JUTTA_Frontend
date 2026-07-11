@@ -32,3 +32,16 @@ Sigue estos pasos para clonar el proyecto y ejecutarlo en tu entorno local:
 ```bash
 git clone [https://github.com/elisoner23/CE_JUTTA_Frontend.git](https://github.com/elisoner23/CE_JUTTA_Frontend.git)
 cd CE_JUTTA_Frontend
+
+### 2. Instalar dependencias
+```bash
+npm install
+
+### 3. Variables de Entorno (.env)
+```bash
+VITE_API_URL=http://localhost:3000/api
+VITE_API_KEY=tu_clave_api_secreta
+
+### 4. Levantar el Servidor de Desarrollo
+```bash
+npm run dev
