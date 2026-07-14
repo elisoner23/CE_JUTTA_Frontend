@@ -1,68 +1,60 @@
-import { useState } from 'react';
-import { crearAlumno } from '../services/alumnosService';
+import { useState, useEffect } from 'react';
+import { actualizarAlumno } from '../services/alumnosService';
 import { manejarError } from '../utils/manejarError';
-
+import { validarCampos } from '../utils/validarCampos';
+ 
 const estadoInicial = {
   nombre: '',
   apellido: '',
   grado: '',
   seccion: '',
 };
-
-const validarCampos = (campos) => {
-  const errores = {};
-
-  if (campos.nombre.trim().length < 2) {
-    errores.nombre = 'El nombre debe tener al menos 2 caracteres';
-  }
-
-  if (campos.apellido.trim().length < 2) {
-    errores.apellido = 'El apellido debe tener al menos 2 caracteres';
-  }
-
-  if (campos.grado === '') {
-    errores.grado = 'Debes seleccionar un grado';
-  }
-
-  if (campos.seccion === '') {
-    errores.seccion = 'Debes seleccionar una seccion';
-  }
-};
-
-export const FormularioCrear = ({ onGuardado, onCancelar }) => {
+ 
+export const FormularioEditar = ({ alumnoEditar, onGuardado, onCancelar }) => {
   const [campos, setCampos] = useState(estadoInicial);
   const [errores, setErrores] = useState({});
-
+ 
+  useEffect(() => {
+    setCampos({
+      nombre: alumnoEditar.nombre,
+      apellido: alumnoEditar.apellido,
+      grado: alumnoEditar.grado,
+      seccion: alumnoEditar.seccion,
+    });
+  }, [alumnoEditar]);
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
+ 
     setCampos((anterior) => ({ ...anterior, [name]: value }));
-
+ 
     if (errores[name]) {
       setErrores((anterior) => ({ ...anterior, [name]: null }));
     }
   };
-
+ 
   const handleGuardar = async () => {
     const erroresEncontrado = validarCampos(campos);
-
+ 
     if (Object.keys(erroresEncontrado).length > 0) {
       setErrores(erroresEncontrado);
+ 
       return;
     }
-
+ 
     try {
-      await crearAlumno(campos);
+      await actualizarAlumno(alumnoEditar.id, campos);
       onGuardado();
     } catch (error) {
       console.error('Error al momento de guardar un alumno');
+      manejarError(error);
     }
   };
-
+ 
   return (
     <div>
-      <h2>Registrar nuevo alumno</h2>
-
+      <h2>Actualizar alumno</h2>
+ 
       <div>
         <label>Nombre</label>
         <input
@@ -70,12 +62,12 @@ export const FormularioCrear = ({ onGuardado, onCancelar }) => {
           name='nombre'
           value={campos.nombre}
           onChange={handleChange}
-          placeholder='Ej: Juan'
+          placeholder='Ej: Vic'
         />
-
-        {errores.nombre && <p>{error.nombre}</p>}
+ 
+        {errores.nombre && <p>{errores.nombre}</p>}
       </div>
-
+ 
       <div>
         <label>Apellido</label>
         <input
@@ -85,22 +77,22 @@ export const FormularioCrear = ({ onGuardado, onCancelar }) => {
           onChange={handleChange}
           placeholder='Ej: Flores'
         />
-
-        {errores.apellido && <p>{error.apellido}</p>}
+ 
+        {errores.apellido && <p>{errores.apellido}</p>}
       </div>
-
+ 
       <div>
         <label>Grado</label>
         <select name='grado' value={campos.grado} onChange={handleChange}>
           <option>Selecciona un grado</option>
-          <option value='7mo'>7mo</option>
-          <option value='8vo'>8vo</option>
-          <option value='9no'>9no</option>
+          <option value='7to'>7to</option>
+          <option value='8to'>8to</option>
+          <option value='9to'>9to</option>
         </select>
-
-        {errores.grado && <p>{error.grado}</p>}
+ 
+        {errores.grado && <p>{errores.grado}</p>}
       </div>
-
+ 
       <div>
         <label>Seccion</label>
         <select name='seccion' value={campos.seccion} onChange={handleChange}>
@@ -108,13 +100,13 @@ export const FormularioCrear = ({ onGuardado, onCancelar }) => {
           <option value='A'>A</option>
           <option value='B'>B</option>
         </select>
-
-        {errores.seccion && <p>{error.seccion}</p>}
+ 
+        {errores.seccion && <p>{errores.seccion}</p>}
       </div>
-
+ 
       <div>
-        <button onClick={handleGuardar}>Registrar alumno</button>
-
+        <button onClick={handleGuardar}>Actualizar alumno</button>
+ 
         <button onClick={onCancelar}>Cancelar</button>
       </div>
     </div>

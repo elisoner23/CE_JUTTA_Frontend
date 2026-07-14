@@ -16,13 +16,16 @@ export const DetalleAlumno = ({ idAlumno }) => {
     };
 
     fetchAlumnoPorId();
-  }, []);
+  }, [idAlumno]);
 
   return (
     <div>
       <h2>Detalle del alumno</h2>
 
       <p>Nombre: {alumno?.nombre}</p>
+      <p>grado: {alumno?.grado}</p>
+      <p>Sección: {alumno?.seccion}</p>
+      <button onClick={() => setAlumno(null)}>Cerrar detalle</button>
     </div>
   );
 };
