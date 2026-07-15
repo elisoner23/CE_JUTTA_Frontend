@@ -22,7 +22,7 @@ export const ListaAlumnos = ({ onSeleccionarAlumno, onEditar, recargar }) => {
   }, [recargar]);
  
   const alumnosFiltrados = alumnos.filter((alumno) => {
-    const coincideNombre = alumno.nombre
+    const coincideNombre = `${alumno.nombre} ${alumno.apellido}`
       .toLowerCase()
       .includes(busqueda.toLowerCase());
  

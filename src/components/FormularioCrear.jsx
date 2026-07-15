@@ -27,6 +27,8 @@ const validarCampos = (campos) => {
   if (campos.seccion === '') {
     errores.seccion = 'Debes seleccionar una seccion';
   }
+
+  return errores;
 };
 
 export const FormularioCrear = ({ onGuardado, onCancelar }) => {
@@ -73,7 +75,7 @@ export const FormularioCrear = ({ onGuardado, onCancelar }) => {
           placeholder='Ej: Juan'
         />
 
-        {errores.nombre && <p>{error.nombre}</p>}
+        {errores.nombre && <p>{errores.nombre}</p>}
       </div>
 
       <div>
@@ -86,7 +88,7 @@ export const FormularioCrear = ({ onGuardado, onCancelar }) => {
           placeholder='Ej: Flores'
         />
 
-        {errores.apellido && <p>{error.apellido}</p>}
+        {errores.apellido && <p>{errores.apellido}</p>}
       </div>
 
       <div>
