@@ -1,0 +1,22 @@
+/* Base movil una sola columna */
+.lista{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Media query para pantallas medianas (tablets) */
+@media (min-width: 768px) {
+    .lista{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+/* Media query para pantallas grandes (laptops) */
+@media (min-width: 1024px) {
+    .lista{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

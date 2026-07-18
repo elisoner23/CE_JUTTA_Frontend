@@ -1,0 +1,166 @@
+/* ==========================================================================
+   Contenedor del Formulario
+   ========================================================================== */
+.tarjetaFormulario {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  max-width: 100%;
+  margin: 1rem auto;
+}
+
+.titulo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #f1f5f9;
+  letter-spacing: -0.025em;
+}
+
+/* ==========================================================================
+   Campos e Inputs (Mobile-first -> Stack vertical continuo)
+   ========================================================================== */
+.grupoCampo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin-bottom: 1.25rem;
+}
+
+.label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.375rem;
+  color: #334155;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.input:focus,
+.select:focus {
+  border-color: #2563eb; /* Azul corporativo activo */
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Estado de Error */
+.inputError {
+  border-color: #ef4444; /* Rojo de advertencia sobrio */
+  background-color: #fef2f2;
+}
+
+.inputError:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.textoError {
+  font-size: 0.75rem;
+  color: #dc2626;
+  margin: 0;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Botones de Acción (Mobile-first -> Stackeados por espacio de pulgar)
+   ========================================================================== */
+.grupoAcciones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.btnGuardar,
+.btnCancelar {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.btnGuardar {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: 1px solid #2563eb;
+}
+
+.btnGuardar:hover {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.btnCancelar {
+  background-color: #ffffff;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.btnCancelar:hover {
+  background-color: #f8fafc;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.btnGuardar:active,
+.btnCancelar:active {
+  transform: translateY(1px);
+}
+
+/* ==========================================================================
+   Media Queries (Pantallas de escritorio / Tablets)
+   ========================================================================== */
+@media (min-width: 640px) {
+  .tarjetaFormulario {
+    padding: 2rem;
+    max-width: 600px; /* Ancho idóneo para formularios de una sola columna */
+  }
+
+  /* Distribución de Grado y Sección en 2 columnas en paralelo */
+  .filaGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Los botones vuelven a su posición horizontal de dashboard */
+  .grupoAcciones {
+    flex-direction: row-reverse; /* El botón principal queda a la derecha */
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+
+  .btnGuardar,
+  .btnCancelar {
+    width: auto;
+    padding: 0.625rem 1.25rem;
+  }
+}

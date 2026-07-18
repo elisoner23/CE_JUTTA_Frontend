@@ -1,0 +1,57 @@
+/* ==========================================================================
+   Contenedor Principal del Header (Mobile-first -> Stack vertical)
+   ========================================================================== */
+.header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ==========================================================================
+   Elementos del Texto
+   ========================================================================== */
+.titulo {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0f172a; /* Azul grisáceo oscuro corporativo */
+  margin: 0;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+.usuarioInfo {
+  font-size: 0.875rem;
+  color: #64748b; /* Gris intermedio para datos secundarios */
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Resalte sutil para el nombre del usuario */
+.usuarioInfo strong {
+  color: #334155;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Media Queries para Pantallas Medianas/Grandes (Layout horizontal de Dashboard)
+   ========================================================================== */
+@media (min-width: 640px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 2rem;
+    height: 64px; /* Altura estándar fija para barras de navegación de dashboards */
+    box-sizing: border-box;
+  }
+
+  .titulo {
+    font-size: 1.25rem;
+  }
+}
